@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QuickInvite
+
+An AI-powered invitation generator and RSVP management application. Create personalized event invitations in seconds and track guest responses with ease.
+
+## Features
+
+- **AI-Generated Invitations** - Enter a brief description and let GPT-4o-mini craft the perfect invitation
+- **Multiple Styles** - Choose from Hangout (casual), Meeting (formal), or Party (celebratory) tones
+- **Unique Shareable Links** - Each invitation gets a unique URL for guests to RSVP
+- **RSVP Tracking** - Guests can respond Yes, No, or Maybe
+- **Host Dashboard** - View all responses in real-time with summary statistics
+
+## Tech Stack
+
+- **Framework:** [Next.js](https://nextjs.org/) 16
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Frontend:** [React](https://react.dev/) 19
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) v4
+- **Database:** SQLite with [Prisma](https://www.prisma.io/) ORM
+- **AI:** [OpenAI API](https://openai.com/api/) (GPT-4o-mini)
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Node.js 18+
+- npm, yarn, pnpm, or bun
+- OpenAI API key
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/eshikohli/QuickInvite.git
+   cd QuickInvite
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up environment variables:
+   ```bash
+   cp .env.example .env
+   ```
+   Then add your OpenAI API key to `.env`:
+   ```
+   OPENAI_API_KEY=your_api_key_here
+   ```
+
+4. Set up the database:
+   ```bash
+   npx prisma migrate dev
+   ```
+
+5. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Usage
+
+1. Select an invitation style (Hangout, Meeting, or Party)
+2. Enter a brief description of your event
+3. Click "Generate Invite" to create your invitation
+4. Share the guest link with invitees
+5. Track RSVPs on your host dashboard
+
+## Project Structure
+
+```
+src/
+├── app/
+│   ├── page.tsx              # Home page - create invitations
+│   ├── api/
+│   │   ├── invites/route.ts  # Invitation creation endpoint
+│   │   └── rsvp/route.ts     # RSVP submission endpoint
+│   ├── i/[publicSlug]/       # Guest invitation view
+│   └── host/[hostSlug]/      # Host dashboard
+└── lib/
+    └── prisma.ts             # Prisma client
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## License
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Author
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Eshi Kohli

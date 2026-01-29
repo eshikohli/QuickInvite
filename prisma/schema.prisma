@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Invite {
+  id          String   @id @default(cuid())
+  style       String
+  description String
+  title       String
+  body        String
+  publicSlug  String   @unique
+  hostSlug    String   @unique
+  createdAt   DateTime @default(now())
+  rsvps       RSVP[]
+}
+
+model RSVP {
+  id        String   @id @default(cuid())
+  inviteId  String
+  name      String
+  response  String
+  createdAt DateTime @default(now())
+  invite    Invite   @relation(fields: [inviteId], references: [id], onDelete: Cascade)
+
+  @@unique([inviteId, name])
+}
